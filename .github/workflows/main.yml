@@ -8,6 +8,15 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      - name: check
+        run: |
+          ls
+          echo "cd .."
+          cd ..
+          ls
+          echo "cd .."
+          cd ..
+          ls
       - name: Checkout 5sounds-client repo
         uses: actions/checkout@v2
       - name: check
