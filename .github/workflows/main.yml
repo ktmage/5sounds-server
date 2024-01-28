@@ -9,7 +9,7 @@ jobs:
       - name: Checkout 5sounds-client repo
         uses: actions/checkout@v2
         with:
-          repository: ${{ env.CLIENT_REPO }}
+          repository: ktmage/5sounds-client
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           path: client
 
@@ -28,6 +28,7 @@ jobs:
       - name: Checkout this repo
         uses: actions/checkout@v2
         with:
+          repository: ktmage/5sounds-server
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           path: server
 
