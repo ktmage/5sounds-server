@@ -13,6 +13,12 @@ jobs:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           path: client
 
+      - name: Install dependencies and build
+        run: |
+          cd client
+          npm install
+          npm run build
+
       - name: Copy dist files to temporary directory
         run: |
           mkdir temp
