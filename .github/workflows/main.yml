@@ -16,7 +16,7 @@ jobs:
       - name: Install dependencies and build
         run: |
           cd client
-          ls
+          cat package.json
           npm install
           npm run build
 
