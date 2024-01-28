@@ -21,9 +21,15 @@ jobs:
       - name: Build client
         run: |
           cd client
+          touch .env
+          echo "env.API_URL"
+          echo "env.API_URL" >> .env
           npm install
           npm run build
           cd ..
+        env:
+          NODE_ENV: production
+
 
       - name: Copy files
         run: cp -r client/dist/* public/
