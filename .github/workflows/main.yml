@@ -33,7 +33,6 @@ jobs:
         with:
           repository: ktmage/5sounds-server
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
-          path: server
 
       - name: Copy files to /public
         run: |
