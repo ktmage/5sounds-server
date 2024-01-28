@@ -22,6 +22,7 @@ jobs:
       - name: Copy dist files to temporary directory
         run: |
           mkdir temp
+          ls
           cp -r dist/* temp/
 
       - name: Checkout 5sounds-server repo
