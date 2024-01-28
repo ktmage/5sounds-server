@@ -15,15 +15,18 @@ jobs:
 
       - name: Install dependencies and build
         run: |
+          ls
           cd client
           npm install
           npm run build
           cd ..
+          ls
 
       - name: Copy dist files to temporary directory
         run: |
           mkdir temp
           cp -r client/dist/* temp/
+          ls
 
       - name: Checkout this repo
         uses: actions/checkout@v2
@@ -34,8 +37,10 @@ jobs:
 
       - name: Copy files to /public
         run: |
+          ls
           cp -r temp/* server/public/
           cd server
+          ls
 
       - name: Create Pull Request
         id: cpr
