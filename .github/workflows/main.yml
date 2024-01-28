@@ -18,6 +18,11 @@ jobs:
           cd client
           npm install
           npm run build
+          ls
+          cd ..
+          ls
+          cd .. 
+          ls
 
       - name: Copy dist files to temporary directory
         run: |
