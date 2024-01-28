@@ -2,51 +2,14 @@ name: Update public files
 on:
   repository_dispatch:
     types: [update-files]
+
 jobs:
   update-public-files:
     runs-on: ubuntu-latest
+    
     steps:
       - name: Checkout 5sounds-client repo
         uses: actions/checkout@v2
-        with:
-          repository: ktmage/5sounds-client
-          token: ${{ secrets.REPO_ACCESS_TOKEN }}
-          path: client
-
-      - name: Install dependencies and build
+      - name: check
         run: |
-          cd client
-          npm install
-          npm run build
           ls
-          cd ..
-          ls
-          cd .. 
-          ls
-
-      - name: Copy dist files to temporary directory
-        run: |
-          mkdir temp
-          ls
-          cp -r dist/* temp/
-
-      - name: Checkout 5sounds-server repo
-        uses: actions/checkout@v2
-        with:
-          repository: ktmage/5sounds-server
-          token: ${{ secrets.REPO_ACCESS_TOKEN }}
-          path: server
-
-      - name: Copy files to /public
-        run: |
-          cp -r temp/* server/public/
-
-      - name: Create Pull Request
-        id: cpr
-        uses: peter-evans/create-pull-request@v3
-        with:
-          token: ${{ secrets.REPO_ACCESS_TOKEN }}
-          commit-message: Update public files
-          title: 'Update public files'
-          body: 'This PR updates the public files with the latest dist files.'
-          branch: 'update-public-files'
