@@ -8,23 +8,36 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: check
-        run: |
-          ls
-          echo "cd .."
-          cd ..
-          ls
-          echo "cd .."
-          cd ..
-          ls
-      - name: Checkout 5sounds-client repo
+      - name: Checkout
         uses: actions/checkout@v2
-      - name: check
+        
+      - name: Clone client
+        uses: actions/checkout@v2
+        with:
+          repository: ktmage/5sounds-client
+          path: client
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          
+      - name: Build client
         run: |
-          ls
-          echo "cd .."
+          cd client
+          npm install
+          npm run build
           cd ..
-          ls
-          echo "cd .."
-          cd ..
-          ls
+
+      - name: Copy files
+        run: cp -r client/dist/* public/
+
+      - name: Clean client
+        run: rm -rf client
+
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          commit-message: Update public files
+          title: 'Update public files'
+          body: 'This PR updates the public files with the latest dist files.'
+          branch: 'update-public-files'
+          delete-branch: true
+          branch-suffix: timestamp
