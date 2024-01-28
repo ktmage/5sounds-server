@@ -35,6 +35,7 @@ jobs:
       - name: Copy files to /public
         run: |
           cp -r temp/* server/public/
+          cd server
 
       - name: Create Pull Request
         id: cpr
