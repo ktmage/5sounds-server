@@ -13,3 +13,9 @@ jobs:
       - name: check
         run: |
           ls
+          echo "cd .."
+          cd ..
+          ls
+          echo "cd .."
+          cd ..
+          ls
